@@ -41,6 +41,13 @@ class C4SoapConn:
          data = BeautifulSoup(data)
          return data
 
+    def GetNetworkBindings(self):
+         MESSAGE = '<c4soap name="GetNetworkBindings" async="False"> <param name="filter" type="number">0</param></c4soap>'
+         socketConn.sendall((MESSAGE + "\0").encode())
+         data = socketConn.recv(BUFFER_SIZE)
+         data = BeautifulSoup(data)
+         return data
+
 class C4Light:
     '''
     Instantiate light object with id
