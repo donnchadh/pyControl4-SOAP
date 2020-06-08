@@ -10,11 +10,11 @@ Disclaimer: USE AT YOUR RISK, I TAKE NO RESPONSIBILITY
 '''
 
 from bs4 import BeautifulSoup
-import socket
+from PyControl4 import connection
 
 # Insert the IP of your Control4 system here. Can be obtained from Composer.
-TCP_IP = '192.168.1.10' # Will need to change for your system's IP
-TCP_PORT = 5020
+TCP_IP = '192.168.1.25' # Will need to change for your system's IP
+TCP_PORT = 5021
 BUFFER_SIZE = 8192
 
 # Function used to extract text between tags
@@ -29,19 +29,17 @@ def getText(soupData,tag):
         return "Value not found!"
 
 # Connect to Director and issue soap command to get all items on system.
-directorConn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-directorConn.connect((TCP_IP,TCP_PORT))
+connection.C4SoapConn(TCP_IP, TCP_PORT)
 MESSAGE = '<c4soap name="GetItems" async="False"><param name="filter" type="number">0</param></c4soap>'
-directorConn.sendall(MESSAGE + "\0") # The null terminating character is VERY important to include
-data = ""
+data_soup = connection.C4SoapConn.Send(MESSAGE)
+data = str(data_soup)
 out_string = ""
 while not '</c4soap>' in data:
-    data = directorConn.recv(BUFFER_SIZE)
     out_string += data
     if '</c4soap>' in data:
         break
-soapData = BeautifulSoup(out_string.decode('ascii', 'ignore'))
-directorConn.close()
+soapData = BeautifulSoup(out_string, "lxml-xml")
+# directorConn.close()
 
 # Parse SOAP data
 items = soapData.findAll('item')
@@ -56,4 +54,4 @@ for item in items:
             8 - Room
     '''
     if getText(item,"type") == "7":
-            print "%s, %s" % (getText(item, "id"), getText(item, "name"))
+            print("{1}, {2}".format(getText(item, "id"), getText(item, "name")))
