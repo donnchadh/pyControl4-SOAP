@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="PyControl4", # Replace with your own username
+    name="PyControl4",  # Replace with your own username
     version="0.0.1",
     author="lawtancool",
     author_email="contact@lawrencetan.ml",
@@ -18,5 +18,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires=">=3.6",
 )
