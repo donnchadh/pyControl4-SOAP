@@ -33,6 +33,12 @@ class C4SoapConn:
     @staticmethod
     def Send(MESSAGE):
          socketConn.sendall((MESSAGE + "\0").encode())
+    
+    def GetItems():
+         MESSAGE = '<c4soap name="GetItems" async="False"> <param name="filter" type="number">0</param></c4soap>'
+         socketConn.sendall((MESSAGE + "\0").encode())
+         data = socketConn.recv(BUFFER_SIZE)
+         return data
 
 class C4Light:
     '''
