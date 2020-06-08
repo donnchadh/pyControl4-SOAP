@@ -36,3 +36,5 @@ nosetests.xml
 .pydevproject
 TestBench.py
 .vscode/settings.json
+.venv/
+
