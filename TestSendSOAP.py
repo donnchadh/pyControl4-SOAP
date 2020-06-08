@@ -1,6 +1,6 @@
 '''
-Author: sapatel91
-Date: March 30, 2014
+Author: lawtancool, sapatel91
+Date: June 8, 2020
 File: TestSendSOAP.py
 
 Purpose: Send SOAP Commands to C4

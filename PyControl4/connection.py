@@ -1,9 +1,9 @@
 '''
-Author: sapatel91
-Date: March 29, 2014
-File: Control4Lights.py
+Author: lawtancool, sapatel91
+Date: June 8, 2020
+File: connection.py
 
-Purpose: Encapsulate Control4 Devices
+Purpose: Creates connection to Control4 Director
 
 Disclaimer: USE AT YOUR RISK, I TAKE NO RESPONSIBILITY
             Most likely there won't be any though

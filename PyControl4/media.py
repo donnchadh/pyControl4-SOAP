@@ -1,9 +1,9 @@
 '''
-Author: sapatel91
-Date: March 29, 2014
-File: Control4Lights.py
+Author: lawtancool, sapatel91
+Date: June 8, 2020
+File: media.py
 
-Purpose: Encapsulate Control4 Devices
+Purpose: Control Control4 media (requires C4SoapConn to be setup by the caller script)
 
 Disclaimer: USE AT YOUR RISK, I TAKE NO RESPONSIBILITY
             Most likely there won't be any though
