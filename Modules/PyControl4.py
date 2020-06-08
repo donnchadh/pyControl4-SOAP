@@ -9,6 +9,7 @@ Disclaimer: USE AT YOUR RISK, I TAKE NO RESPONSIBILITY
             Most likely there won't be any though
 '''
 
+import ssl
 import socket
 from bs4 import BeautifulSoup
 
@@ -21,11 +22,12 @@ class C4SoapConn:
     Establish connection to Control4 system
     Parameters: 
         TCP_IP - IP Address of system
-        TCP_PORT - should be 5020
+        TCP_PORT - should be 5021 (5020 for non-SSL, depreciated)
     '''
     def __init__(self, TCP_IP, TCP_PORT):
+        socketNonSSL = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         global socketConn
-        socketConn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        socketConn = ssl.wrap_socket(socketNonSSL)
         socketConn.connect((TCP_IP, TCP_PORT))
     
     @staticmethod
