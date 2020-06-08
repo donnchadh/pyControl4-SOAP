@@ -13,8 +13,10 @@ from Modules.PyControl4 import *
 
 # Establish Connection
 # NOTE: IP Address will be different for your system
-C4SoapConn('192.168.1.10', 5020)
+C4SoapConn('192.168.1.25', 5021)
 
+light = C4Light(253)
+light.rampToLevel(0, 10000)
 # Pulse Volume Down in Family Room
-Message = '<c4soap name="SendToDeviceAsync" async="1" seq="1615"><param name="iddevice" type="number">10</param><param name="data" type="string"><devicecommand><command>PULSE_VOL_DOWN</command><params></params></devicecommand></param></c4soap>'
-C4SoapConn.Send(Message)
+#Message = '<c4soap name="SendToDeviceAsync" async="1" seq="1615"><param name="iddevice" type="number">10</param><param name="data" type="string"><devicecommand><command>PULSE_VOL_DOWN</command><params></params></devicecommand></param></c4soap>'
+#C4SoapConn.Send(Message)
