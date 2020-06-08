@@ -35,3 +35,4 @@ nosetests.xml
 .project
 .pydevproject
 TestBench.py
+.vscode/settings.json
