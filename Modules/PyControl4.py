@@ -38,6 +38,7 @@ class C4SoapConn:
          MESSAGE = '<c4soap name="GetItems" async="False"> <param name="filter" type="number">0</param></c4soap>'
          socketConn.sendall((MESSAGE + "\0").encode())
          data = socketConn.recv(BUFFER_SIZE)
+         data = BeautifulSoup(data)
          return data
 
 class C4Light:
