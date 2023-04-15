@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 import socket
 
 # Insert the IP of your Control4 system here. Can be obtained from Composer.
-TCP_IP = "192.168.1.10"  # Will need to change for your system's IP
+TCP_IP = "192.168.1.240"  # Will need to change for your system's IP
 TCP_PORT = 5020
 BUFFER_SIZE = 8192
 
@@ -34,14 +34,14 @@ directorConn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 directorConn.connect((TCP_IP, TCP_PORT))
 MESSAGE = '<c4soap name="GetItems" async="False"><param name="filter" type="number">0</param></c4soap>'
 directorConn.sendall(
-    MESSAGE + "\0"
+    (MESSAGE + "\0").encode()
 )  # The null terminating character is VERY important to include
-data = ""
-out_string = ""
-while not "</c4soap>" in data:
+data = "".encode()
+out_string = "".encode()
+while not "</c4soap>".encode() in data:
     data = directorConn.recv(BUFFER_SIZE)
     out_string += data
-    if "</c4soap>" in data:
+    if "</c4soap>".encode() in data:
         break
 soapData = BeautifulSoup(out_string.decode("ascii", "ignore"))
 directorConn.close()
@@ -59,4 +59,4 @@ for item in items:
             8 - Room
     """
     if getText(item, "type") == "8":
-        print "%s, %s" % (getText(item, "id"), getText(item, "name"))
+        print ("%s, %s, %s" % (getText(item, "id"), getText(item, "name"), getText(item, "parent_id")))

@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 from PyControl4 import connection
 
 # Insert the IP of your Control4 system here. Can be obtained from Composer.
-TCP_IP = "192.168.1.25"  # Will need to change for your system's IP
+TCP_IP = "192.168.1.240"  # Will need to change for your system's IP
 TCP_PORT = 5021
 BUFFER_SIZE = 8192
 
@@ -39,11 +39,14 @@ while not "</c4soap>" in data:
     out_string += data
     if "</c4soap>" in data:
         break
-soapData = BeautifulSoup(out_string, "lxml-xml")
+soapData = BeautifulSoup(data_soup, "lxml-xml")
+#print (out_string)
 # directorConn.close()
 
 # Parse SOAP data
+print (soapData)
 items = soapData.findAll("item")
+print ("Rooms")
 for item in items:
     """
         Change the type value for the following:
@@ -54,6 +57,11 @@ for item in items:
             7 - Device
             8 - Room
     """
-    if getText(item, "type") == "7":
-        print("{1}, {2}".format(getText(item, "id"), getText(item, "name")))
+    if getText(item, "type") == "8":
+        print("{0}, {1}".format(getText(item, "id"), getText(item, "name")))
+
+print ("Devices")
+for item in items:
+   if getText(item, "type") == "7":
+       print("{0}, {1}".format(getText(item, "id"), getText(item, "name")))
 

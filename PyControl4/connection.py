@@ -35,9 +35,17 @@ class C4SoapConn:
     # @staticmethod
     def Send(MESSAGE):
         socketConn.sendall((MESSAGE + "\0").encode())
-        data = socketConn.recv(BUFFER_SIZE)
-        data = BeautifulSoup(data, "lxml-xml")
-        return data
+        full_data = b''
+        while True: 
+            data = socketConn.recv(BUFFER_SIZE)
+            if len(data) > 0:
+                full_data = full_data + data
+            if len(data) < BUFFER_SIZE:
+                #print (data)
+                break
+        #print(full_data[:-1])
+        #full_text = BeautifulSoup(full_data[:-1], "lxml-xml")
+        return full_data
 
     def GetItems(self):
         MESSAGE = '<c4soap name="GetItems" async="False"> <param name="filter" type="number">0</param></c4soap>'

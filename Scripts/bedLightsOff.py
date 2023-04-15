@@ -104,10 +104,10 @@ def getLightState(id):
     return value
 
 
-setLevel(207, 100)
-setLevel(207, 0)
-setLevel(88, 100)
-setLevel(88, 0)
+#setLevel(207, 100)
+setLevel(315, 0)
+#setLevel(88, 100)
+#setLevel(88, 0)
 #print(getLevel(207))
 """
 setLevel(276, 0)

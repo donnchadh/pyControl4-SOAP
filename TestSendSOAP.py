@@ -17,9 +17,9 @@ from PyControl4 import light
 
 # Establish Connection
 # NOTE: IP Address will be different for your system
-connection.C4SoapConn("192.168.1.25", 5021)
+connection.C4SoapConn("192.168.1.240", 5021)
 
-light = light.C4Light(253)
+light = light.C4Light(207)
 print(light.getLevel())
 # light.rampToLevel(100, 10000)
 # Pulse Volume Down in Family Room
